@@ -1,17 +1,124 @@
-<!--
-=========================================================
-* Material Dashboard 2 - v3.1.0
-=========================================================
+<?php
+include('db_conn.php');
+?>
 
-* Product Page: https://www.creative-tim.com/product/material-dashboard
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
+<?php 
+// Balances
+ $steamid = "76561198396312330"; // Replace with Login Info 
 
-=========================================================
+ $sql = "SELECT playerID, SUM(CardBalance) AS total_balance FROM BTBanking_Accounts WHERE playerID = '$steamid'";
+// Execute the query
+$result = $conn->query($sql);
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
+if ($result === false) {
+    die("Error executing the SQL query: " . $conn->error);
+}
+
+// Fetch the total balance
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $accountbalanceunformatted = $row['total_balance'];
+    $accountbalance = number_format($accountbalanceunformatted);
+}
+// Close the result set
+$result->close();
+
+?>
+<?php 
+// Police Role Details
+
+$sql = "SELECT * FROM BTPoliceUtilities_Rosters";
+$result = $conn->query($sql);
+$policeData = array();
+if ($result === false) {
+    die("Error executing the SQL query: " . $conn->error);
+}
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $policeData[] = $row;
+    }
+}
+// Close the result set
+$result->close();
+
+?>
+
+<?php 
+// Arrest Logs
+
+// Retrieve arrest logs from the database
+$sql = "SELECT * FROM BTPoliceUtilities_Arrest";
+$result = $conn->query($sql);
+$arrestLogs = array();
+
+if ($result === false) {
+    die("Error executing the SQL query: " . $conn->error);
+}
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $arrestLogs[] = $row;
+    }
+}
+
+// Close the result set
+$result->close();
+
+
+?>
+<?php
+// Warrant Details
+
+// Retrieve data from the database
+$sql = "SELECT `date`, `person_name`, `warrant` FROM cadwarrants";
+$result = $conn->query($sql);
+$warrantData = array();
+if ($result === false) {
+    die("Error executing the SQL query: " . $conn->error);
+}
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $warrantData[] = $row;
+    }
+}
+
+// Close the result set
+$result->close();
+
+?>
+
+
+
+<?php
+// Get officer Rank
+
+
+
+$officerId = 76561198396312330; // Replace with logged in user 64ID
+
+// Retrieve officer's rank from the database
+$sql = "SELECT * FROM BTPoliceUtilities_Rosters WHERE PlayerID = '$officerId'";
+$result = $conn->query($sql);
+
+// Check if the query was successful
+if ($result === false) {
+    die("Error executing the SQL query: " . $conn->error);
+}
+
+// Fetch the rank and assign it to a variable
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $officerRank = $row['CurrentRank'];
+    $joined = $row['Joined'];
+    $department = $row['DepartmentAbb'];
+
+} 
+// Close the result set and the database connection
+$result->close();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +128,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-    Material Dashboard 2 by Creative Tim
+IRS - AOC LRP
   </title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -39,32 +146,113 @@
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
 </head>
 
-<body class="g-sidenav-show  bg-gray-200 virtual-reality">
-  <div class="mt-n3">
+<body class="g-sidenav-show  bg-gray-200">
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
+        <img src="../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
+        <span class="ms-1 font-weight-bold text-white">AOC Life Roleplay</span>
+      </a>
+    </div>
+    <hr class="horizontal light mt-0 mb-2">
+    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="../pages/dashboard.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">dashboard</i>
+            </div>
+            <span class="nav-link-text ms-1">Mohave County Info</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="../pages/dmv.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">table_view</i>
+            </div>
+            <span class="nav-link-text ms-1">DMV</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="../pages/police.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">receipt_long</i>
+            </div>
+            <span class="nav-link-text ms-1">Police</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white  active bg-gradient-primary " href="../pages/irs.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">view_in_ar</i>
+            </div>
+            <span class="nav-link-text ms-1">IRS</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="../pages/banking.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
+            </div>
+            <span class="nav-link-text ms-1">Banking</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="../pages/notifications.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">notifications</i>
+            </div>
+            <span class="nav-link-text ms-1">Notifications</span>
+          </a>
+        </li>
+        <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="../pages/profile.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">person</i>
+            </div>
+            <span class="nav-link-text ms-1">Profile</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="../pages/sign-in.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">login</i>
+            </div>
+            <span class="nav-link-text ms-1">Sign In</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="../pages/sign-up.php">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">assignment</i>
+            </div>
+            <span class="nav-link-text ms-1">Sign Up</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </aside>
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Virtual Reality</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Mohave County</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Virtual Reality</h6>
+          <h6 class="font-weight-bolder mb-0">IRS</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-            <div class="input-group input-group-outline">
-              <label class="form-label">Type here...</label>
-              <input type="text" class="form-control">
-            </div>
+          
           </div>
           <ul class="navbar-nav  justify-content-end">
-            <li class="nav-item d-flex align-items-center">
-              <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="https://www.creative-tim.com/builder?ref=navbar-material-dashboard">Online Builder</a>
-            </li>
-            <li class="mt-2">
-              <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star creativetimofficial/material-dashboard on GitHub">Star</a>
-            </li>
+            
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
                 <div class="sidenav-toggler-inner">
@@ -163,273 +351,246 @@
       </div>
     </nav>
     <!-- End Navbar -->
-  </div>
-  <div class="border-radius-xl mx-2 mx-md-3 position-relative" style="background-image: url('../assets/img/vr-bg.jpg'); background-size: cover;">
-    <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
-      <div class="sidenav-header">
-        <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
-          <img src="../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
-          <span class="ms-1 font-weight-bold text-white">Material Dashboard 2</span>
-        </a>
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="row">
+            <div class="col-xl-6 mb-xl-0 mb-4">
+              <div class="card bg-transparent shadow-xl">
+                <div class="overflow-hidden position-relative border-radius-xl">
+                  <img src="../assets/img/illustrations/pattern-tree.svg" class="position-absolute opacity-2 start-0 top-0 w-100 z-index-1 h-100" alt="pattern-tree">
+                  <span class="mask bg-gradient-dark opacity-10"></span>
+                  <div class="card-body position-relative z-index-1 p-3">
+                    <h3 class="text-white">Rank</h3>
+                    <h5 class="text-white mt-4 mb-5 pb-2"><?php echo($officerRank);?></h5>
+                    <div class="d-flex">
+                      <div class="d-flex">
+                        <div class="me-4">
+                          <p class="text-white text-sm opacity-8 mb-0">Department</p>
+                          <h6 class="text-white mb-0"><?php echo($department) ?>
+                          </h6>
+                        </div>
+                        <div>
+                          <p class="text-white text-sm opacity-8 mb-0">Started</p>
+                          <h6 class="text-white mb-0"><?php echo($joined); ?></h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-6">
+              <div class="row">
+                <div class="col-md-6 col-6">
+                  <div class="card">
+                    <div class="card-header mx-4 p-3 text-center">
+                      <div class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg">
+                        <i class="material-icons opacity-10">account_balance</i>
+                      </div>
+                    </div>
+                    <div class="card-body pt-0 p-3 text-center">
+                      <h6 class="text-center mb-0">Salary</h6>
+                      <span class="text-xs">Depends on your Rank</span>
+                      <hr class="horizontal dark my-3">
+                      <h5 class="mb-0">$ 2000</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-6">
+                  <div class="card">
+                    <div class="card-header mx-4 p-3 text-center">
+                      <div class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg">
+                        <i class="material-icons opacity-10">account_balance_wallet</i>
+                      </div>
+                    </div>
+                    <div class="card-body pt-0 p-3 text-center">
+                      <h6 class="text-center mb-0">Balance</h6>
+                      <span class="text-xs">Linked to the Server.</span>
+                      <hr class="horizontal dark my-3">
+                      <h5 class="mb-0">$<?php echo($accountbalance) ?></h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 mb-lg-0 mb-4">
+              <div class="card mt-4">
+                <div class="card-header pb-0 p-3">
+                  <div class="row">
+                    <div class="col-6 d-flex align-items-center">
+                      <h6 class="mb-0">Look up player data using a 64ID or Username.</h6>
+                    </div>
+                   
+                    <div class="col-6 text-end">
+                     
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body p-3">
+                  <div class="row">
+                    <div class="col-md-6 mb-md-0 mb-4">
+                      <div class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
+                      <form action="playerlookup.php" method="POST">
+                          <input type="text" placeholder="Steam64ID or Username" name="steam64id" style="border: none;">
+              
+                      </div>
+                    </div>
+
+           
+                  </div>
+       
+                </div>
+                <input type="submit" class="btn bg-gradient-dark mb-0 center-text">
+              </div>
+              </form>
+            </div>
+          </div>
+
+                
+        </div>
+        <div class="col-lg-4">
+    <div class="card h-100">
+        <div class="card-header pb-0 p-3">
+            <div class="row">
+                <div class="col-6 d-flex align-items-center">
+                    <h6 class="mb-0">Warrants</h6>
+                </div>
+                <div class="col-6 text-end">
+                    <button class="btn btn-outline-primary btn-sm mb-0">View All</button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-3 pb-0">
+            <ul class="list-group">
+                <?php foreach ($warrantData as $item) { ?>
+                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                    <div class="d-flex flex-column">
+                        <h6 class="mb-1 text-dark font-weight-bold text-sm"><?php echo $item['person_name']; ?></h6>
+                        <span class="text-xs"><?php echo $item['warrant']; ?></span>
+                    </div>
+                </li>
+                <?php } ?>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+  <div class="col-md-7 mt-4">
+    <div class="card">
+      <div class="card-header pb-0 px-3">
+        <h6 class="mb-0">Recent Fines</h6>
       </div>
-      <hr class="horizontal light mt-0 mb-2">
-      <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link text-white " href="../pages/dashboard.html">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">dashboard</i>
-              </div>
-              <span class="nav-link-text ms-1">Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white " href="../pages/tables.html">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">table_view</i>
-              </div>
-              <span class="nav-link-text ms-1">Tables</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white " href="../pages/billing.html">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">receipt_long</i>
-              </div>
-              <span class="nav-link-text ms-1">Billing</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white active bg-gradient-primary" href="../pages/virtual-reality.html">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">view_in_ar</i>
-              </div>
-              <span class="nav-link-text ms-1">Virtual Reality</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white " href="../pages/rtl.html">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
-              </div>
-              <span class="nav-link-text ms-1">RTL</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white " href="../pages/notifications.html">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">notifications</i>
-              </div>
-              <span class="nav-link-text ms-1">Notifications</span>
-            </a>
-          </li>
-          <li class="nav-item mt-3">
-            <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white " href="../pages/profile.html">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">person</i>
-              </div>
-              <span class="nav-link-text ms-1">Profile</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white " href="../pages/sign-in.html">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">login</i>
-              </div>
-              <span class="nav-link-text ms-1">Sign In</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white " href="../pages/sign-up.html">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">assignment</i>
-              </div>
-              <span class="nav-link-text ms-1">Sign Up</span>
-            </a>
-          </li>
+      <div class="card-body pt-4 p-3">
+        <ul class="list-group">
+          <?php
+          // Fetch recent fines from the table
+          $query = "SELECT * FROM BTPoliceUtilities_Fines ORDER BY Issued DESC LIMIT 10"; // Adjust the LIMIT as per your requirements
+          $result = execute_query($query);
+
+          // Check if there are any fines
+          if (mysqli_num_rows($result) > 0) {
+              // Loop through the fines and display the data
+              while ($row = mysqli_fetch_assoc($result)) {
+                  $caseId = $row['CaseID'];
+                  $playerId = $row['PlayerID'];
+                  $officerId = $row['OfficerID'];
+                  $fineAmount = $row['FineAmount'];
+                  $reason = $row['Reason'];
+                  $paid = $row['Paid'];
+                  $issued = $row['Issued'];
+                  ?>
+
+                  <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                    <div class="d-flex flex-column">
+                      <h6 class="mb-3 text-sm">Fine Details</h6>
+                      <span class="mb-2 text-xs">Case ID: <span class="text-dark font-weight-bold ms-sm-2"><?php echo $caseId; ?></span></span>
+                      <span class="mb-2 text-xs">Player ID: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $playerId; ?></span></span>
+                      <span class="mb-2 text-xs">Officer ID: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $officerId; ?></span></span>
+                      <span class="mb-2 text-xs">Fine Amount: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $fineAmount; ?></span></span>
+                      <span class="mb-2 text-xs">Reason: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $reason; ?></span></span>
+                      <span class="mb-2 text-xs">Paid: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $paid; ?></span></span>
+                      <span class="text-xs">Issued: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $issued; ?></span></span>
+                    </div>
+                    <div class="ms-auto text-end">
+                      <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">delete</i>Delete</a>
+                      <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">edit</i>Edit</a>
+                    </div>
+                  </li>
+
+                  <?php
+              }
+          } else {
+              echo "<li class='list-group-item border-0'>No recent fines found.</li>";
+          }
+
+          // Close the database connection
+          mysqli_close($conn);
+          ?>
         </ul>
       </div>
-      <div class="sidenav-footer position-absolute w-100 bottom-0 ">
-        <div class="mx-3">
-          <a class="btn btn-outline-primary mt-4 w-100" href="https://www.creative-tim.com/learning-lab/bootstrap/overview/material-dashboard?ref=sidebarfree" type="button">Documentation</a>
-          <a class="btn bg-gradient-primary w-100" href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree" type="button">Upgrade to pro</a>
-        </div>
-      </div>
-    </aside>
-    <main class="main-content border-radius-lg h-100">
-      <div class="section min-vh-85 position-relative transform-scale-0 transform-scale-md-7">
-        <div class="container-fluid">
-          <div class="row pt-10">
-            <div class="col-lg-1 col-md-1 pt-5 pt-lg-0 ms-lg-5 text-center">
-              <a href="javascript:;" class="avatar avatar-lg border-0 p-1" data-bs-toggle="tooltip" data-bs-placement="right" title="My Profile">
-                <img class="border-radius-lg" alt="Image placeholder" src="../assets/img/team-1.jpg">
-              </a>
-              <button class="btn btn-white border-radius-lg p-2 mt-n4 mt-md-2" type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Home">
-                <i class="material-icons p-2">home</i>
-              </button>
-              <button class="btn btn-white border-radius-lg p-2 mt-n4 mt-md-0" type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Search">
-                <i class="material-icons p-2">search</i>
-              </button>
-              <button class="btn btn-white border-radius-lg p-2 mt-n4 mt-md-0" type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Minimize">
-                <i class="material-icons p-2">more_horiz</i>
-              </button>
-            </div>
-            <div class="col-lg-8 col-md-11 ps-md-5 mb-5 mb-md-0">
-              <div class="d-flex">
-                <div class="me-auto">
-                  <h1 class="display-1 font-weight-bold mt-n3 mb-0 text-white">28°C</h1>
-                  <h6 class="text-uppercase mb-0 ms-1 text-white">Cloudy</h6>
-                </div>
-                <div class="ms-auto">
-                  <img class="w-50 float-end mt-n6 mt-lg-n4" src="../assets/img/small-logos/icon-sun-cloud.png" alt="image sun">
-                </div>
-              </div>
-              <div class="row mt-4">
-                <div class="col-lg-4 col-md-6">
-                  <div class="card move-on-hover overflow-hidden">
-                    <div class="card-body">
-                      <div class="d-flex">
-                        <h6 class="mb-0 me-3">08:00</h6>
-                        <h6 class="mb-0">Synk up with Mark
-                          <small class="text-secondary font-weight-normal">Hangouts</small>
-                        </h6>
-                      </div>
-                      <hr class="horizontal dark">
-                      <div class="d-flex">
-                        <h6 class="mb-0 me-3">09:30</h6>
-                        <h6 class="mb-0">Gym <br />
-                          <small class="text-secondary font-weight-normal">World Class</small>
-                        </h6>
-                      </div>
-                      <hr class="horizontal dark">
-                      <div class="d-flex">
-                        <h6 class="mb-0 me-3">11:00</h6>
-                        <h6 class="mb-0">Design Review<br />
-                          <small class="text-secondary font-weight-normal">Zoom</small>
-                        </h6>
-                      </div>
-                    </div>
-                    <a href="javascript:;" class="bg-gray-100 w-100 text-center py-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Show More">
-                      <i class="material-icons text-primary">expand_more</i>
-                    </a>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mt-4 mt-sm-0">
-                  <div class="card bg-gradient-dark move-on-hover">
-                    <div class="card-body">
-                      <div class="d-flex">
-                        <h5 class="mb-0 text-white">To Do</h5>
-                        <div class="ms-auto">
-                          <h1 class="text-white text-end mb-0 mt-n2">7</h1>
-                          <p class="text-sm mb-0 text-white">items</p>
-                        </div>
-                      </div>
-                      <p class="text-white mb-0">Shopping</p>
-                      <p class="mb-0 text-white">Meeting</p>
-                    </div>
-                    <a href="javascript:;" class="w-100 text-center py-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Show More">
-                      <i class="material-icons text-white">expand_more</i>
-                    </a>
-                  </div>
-                  <div class="card move-on-hover mt-4">
-                    <div class="card-body">
-                      <div class="d-flex">
-                        <p class="mb-0">Emails (21)</p>
-                        <a href="javascript:;" class="ms-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Check your emails">
-                          Check
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-md-12 mt-4 mt-lg-0">
-                  <div class="card card-background card-background-mask-dark move-on-hover align-items-start">
-                    <div class="cursor-pointer">
-                      <div class="full-background" style="background-image: url('https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80')"></div>
-                      <div class="card-body">
-                        <h5 class="text-white mb-0">Night Jazz</h5>
-                        <p class="text-white text-sm">Gary Coleman</p>
-                        <div class="d-flex mt-5">
-                          <button class="btn btn-outline-white rounded-circle p-2 mb-0" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Prev">
-                            <i class="material-icons p-2 mt-0">skip_previous</i>
-                          </button>
-                          <button class="btn btn-outline-white rounded-circle p-2 mx-2 mb-0" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Pause">
-                            <i class="material-icons p-2 mt-0">play_arrow</i>
-                          </button>
-                          <button class="btn btn-outline-white rounded-circle p-2 mb-0" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Next">
-                            <i class="material-icons p-2 mt-0">skip_next</i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card move-on-hover mt-4">
-                    <div class="card-body">
-                      <div class="d-flex">
-                        <p class="my-auto">Messages</p>
-                        <div class="ms-auto">
-                          <div class="avatar-group">
-                            <a href="javascript:;" class="avatar avatar-sm border-0 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="2 New Messages">
-                              <img alt="Image placeholder" src="../assets/img/team-1.jpg">
-                            </a>
-                            <a href="javascript:;" class="avatar avatar-sm border-0 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="1 New Message">
-                              <img alt="Image placeholder" src="../assets/img/team-2.jpg">
-                            </a>
-                            <a href="javascript:;" class="avatar avatar-sm border-0 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="13 New Messages">
-                              <img alt="Image placeholder" src="../assets/img/team-3.jpg">
-                            </a>
-                            <a href="javascript:;" class="avatar avatar-sm border-0 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="7 New Messages">
-                              <img alt="Image placeholder" src="../assets/img/team-4.jpg">
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-  </div>
-  <footer class="footer py-4  ">
-    <div class="container-fluid">
-      <div class="row align-items-center justify-content-lg-between">
-        <div class="col-lg-6 mb-lg-0 mb-4">
-          <div class="copyright text-center text-sm text-muted text-lg-start">
-            © <script>
-              document.write(new Date().getFullYear())
-            </script>,
-            made with <i class="fa fa-heart"></i> by
-            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-            for a better web.
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
-  </footer>
+  </div>
+
+        <div class="col-md-5 mt-4">
+    <div class="card h-100 mb-4">
+        <div class="card-header pb-0 px-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6 class="mb-0">Arrest Logs</h6>
+                </div>
+                <div class="col-md-6 d-flex justify-content-start justify-content-md-end align-items-center">
+                    <i class="material-icons me-2 text-lg">date_range</i>
+                    <small>Recent</small>
+                </div>
+            </div>
+        </div>
+        <div class="card-body pt-4 p-3">
+            <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">Newest</h6>
+            <ul class="list-group">
+                <?php foreach ($arrestLogs as $log) { ?>
+                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                    <div class="d-flex align-items-center">
+                        <button class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 p-3 btn-sm d-flex align-items-center justify-content-center"><i class="material-icons text-lg">expand_more</i></button>
+                        <div class="d-flex flex-column">
+                            <h6 class="mb-1 text-dark text-sm"><?php echo $log['PlayerID']; ?></h6>
+                            <span class="text-xs"><?php echo $log['Issued']; ?></span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold">
+                        <?php echo $log['Reason']; ?>
+                    </div>
+                </li>
+                <?php } ?>
+            </ul>
+        </div>
+    </div>
+</div>
+<footer class="footer py-4  ">
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 mb-lg-0 mb-4">
+              <div class="copyright text-center text-sm text-muted text-lg-start">
+                © <script>
+                  document.write(new Date().getFullYear())
+                </script>,
+                made with <i class="fa fa-heart"></i> by
+                <a href="https://github.com/Crazys-Corner" class="font-weight-bold" target="_blank">crazy's_corner#6583</a>
+                for AOC Roleplay.
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                <li class="nav-item">
+                  <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank"> Bootstrap theme by Creative Tim.</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
   <div class="fixed-plugin">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
       <i class="material-icons py-2">settings</i>
