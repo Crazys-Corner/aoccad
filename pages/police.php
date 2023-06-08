@@ -118,6 +118,26 @@ $result->close();
 
 ?>
 
+<?php 
+// Officer Salary 
+$sql = "SELECT * FROM setpdpay";
+$result = $conn->query($sql);
+$policeSalary = array();
+if ($result === false) {
+    die("Error executing the SQL query: " . $conn->error);
+}
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      $hourly = $row['hourly'];
+      $salary = $row['salary'];
+      
+      $data = ($hourly != 0) ? $hourly : $salary;
+      
+      $policeSalary[] = $data;
+    }
+}
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -390,11 +410,25 @@ $result->close();
                       </div>
                     </div>
                     <div class="card-body pt-0 p-3 text-center">
-                      <h6 class="text-center mb-0">Salary</h6>
-                      <span class="text-xs">Depends on your Rank</span>
-                      <hr class="horizontal dark my-3">
-                      <h5 class="mb-0">$ 2000</h5>
-                    </div>
+  <h6 class="text-center mb-0">
+    <?php
+      if ($hourly == 0) {
+        echo "Salary";
+      } else if ($salary == 0) {
+        echo "Hourly";
+      } else {
+        echo "Hourly / Salary";
+      }
+    ?>
+  </h6>
+  <span class="text-xs">Depends on your Rank</span>
+  <hr class="horizontal dark my-3">
+  <h5 class="mb-0">
+    <?php
+      echo $data;
+    ?>
+  </h5>
+</div>
                   </div>
                 </div>
                 <div class="col-md-6 col-6">
