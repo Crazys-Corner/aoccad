@@ -1,5 +1,11 @@
 <?php 
+// Required per page code
+session_start();
+$steam64 = $_SESSION['steam_64id'];
+
+
 include('db_conn.php');
+// Required per page code
 
 $query = 'SELECT SUM(CardBalance) AS total_sum FROM BTBanking_Accounts;';
 $result = mysqli_query($conn, $query);

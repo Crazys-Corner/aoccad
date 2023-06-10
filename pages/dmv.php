@@ -1,3 +1,20 @@
+<?php
+// Required per page code
+session_start();
+$steam64 = $_SESSION['steam_64id'];
+
+
+include('db_conn.php');
+// Required per page code
+?>
+
+<?php
+// Registered Items Init
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -465,39 +482,55 @@
                         </button>
                       </td>
                     </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div>
-                            <img src="../assets/img/car.jpg" class="avatar avatar-sm rounded-circle me-2" alt="invision">
-                          </div>
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Vehicle</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">$5,000</p>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">done</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <div class="d-flex align-items-center justify-content-center">
-                          <span class="me-2 text-xs font-weight-bold">100%</span>
-                          <div>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="align-middle">
-                        <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                          <i class="fa fa-ellipsis-v text-xs"></i>
-                        </button>
-                      </td>
-                    </tr>
+                    <?php
+// Assuming you have already established a database connection and started the session
+
+// Retrieve data from the "registeredvehicles" table for the user's ID
+$query = "SELECT * FROM registeredvehicles WHERE ID = '$steam64'";
+$result = mysqli_query($conn, $query);
+
+// Loop through the results and generate HTML code
+while ($row = mysqli_fetch_assoc($result)) {
+    $vehicle = $row['vehicle'];
+    $dateRegistered = $row['dateregistered'];
+    $expirationDate = $row['expirationdate'];
+
+    echo '
+        <tr>
+          <td>
+            <div class="d-flex px-2">
+              <div>
+                <img src="../assets/img/car.jpg" class="avatar avatar-sm rounded-circle me-2" alt="invision">
+              </div>
+              <div class="my-auto">
+                <h6 class="mb-0 text-sm">' . $vehicle . '</h6>
+              </div>
+            </div>
+          </td>
+          <td>
+            <p class="text-sm font-weight-bold mb-0">' . $dateRegistered . '</p>
+          </td>
+          <td>
+            <span class="text-xs font-weight-bold">registered</span>
+          </td>
+          <td class="align-middle text-center">
+            <div class="d-flex align-items-center justify-content-center">
+              <span class="me-2 text-xs font-weight-bold">' . $expirationDate . '</span>
+            </div>
+          </td>
+          <td class="align-middle">
+            <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-ellipsis-v text-xs"></i>
+            </button>
+          </td>
+        </tr>';
+}
+
+// Close the database connection
+mysqli_close($conn);
+?>
+
+
                     <tr>
                       <td>
                         <div class="d-flex px-2">

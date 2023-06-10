@@ -1,3 +1,13 @@
+<?php
+// Required per page code
+session_start();
+$steam64 = $_SESSION['steam_64id'];
+
+
+include('db_conn.php');
+// Required per page code
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -252,7 +262,7 @@
           <div class="col-auto my-auto">
             <div class="h-100">
               <h5 class="mb-1">
-                Richard Davis
+                <?php echo($steam64); ?>
               </h5>
               <p class="mb-0 font-weight-normal text-sm">
                 CEO / Co-Founder

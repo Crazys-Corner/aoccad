@@ -1,10 +1,16 @@
 <?php
+// Required per page code
+session_start();
+$steam64 = $_SESSION['steam_64id'];
+
+
 include('db_conn.php');
+// Required per page code
 ?>
 
 <?php 
 // Balances
- $steamid = "76561198396312330"; // Replace with Login Info 
+ $steamid = $steam64; // Replace with Login Info 
 
  $sql = "SELECT playerID, SUM(CardBalance) AS total_balance FROM BTBanking_Accounts WHERE playerID = '$steamid'";
 // Execute the query
