@@ -122,24 +122,17 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Tables</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Mohave County</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Tables</h6>
+          <h6 class="font-weight-bolder mb-0">Department of Motorvehicles</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-            <div class="input-group input-group-outline">
-              <label class="form-label">Type here...</label>
-              <input type="text" class="form-control">
-            </div>
+            
           </div>
           <ul class="navbar-nav  justify-content-end">
-            <li class="nav-item d-flex align-items-center">
-              <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="https://www.creative-tim.com/builder?ref=navbar-material-dashboard">Online Builder</a>
-            </li>
-            <li class="mt-2">
-              <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star creativetimofficial/material-dashboard on GitHub">Star</a>
-            </li>
+            
+            
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
                 <div class="sidenav-toggler-inner">
@@ -163,11 +156,11 @@
                   <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
                       <div class="my-auto">
-                        <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
+                        
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New message</span> from Laur
+                          <span class="font-weight-bold">Notifications are a work in progress.</span>
                         </h6>
                         <p class="text-xs text-secondary mb-0">
                           <i class="fa fa-clock me-1"></i>
@@ -177,24 +170,7 @@
                     </div>
                   </a>
                 </li>
-                <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
-                    <div class="d-flex py-1">
-                      <div class="my-auto">
-                        <img src="../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm bg-gradient-dark  me-3 ">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New album</span> by Travis Scott
-                        </h6>
-                        <p class="text-xs text-secondary mb-0">
-                          <i class="fa fa-clock me-1"></i>
-                          1 day
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
+              
                 <li>
                   <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
@@ -244,7 +220,7 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Authors table</h6>
+                <h6 class="text-white text-capitalize ps-3">Schedule Appointment</h6>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
@@ -252,10 +228,10 @@
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Appointment</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Next Available Date</th>
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
@@ -264,27 +240,27 @@
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div>
-                            <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                            <img src="../assets/img/driverslicense.png" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">John Michael</h6>
-                            <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
+                            <h6 class="mb-0 text-sm">Drivers Test</h6>
+                            <p class="text-xs text-secondary mb-0">Coming Soon.</p>
                           </div>
                         </div>
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">Manager</p>
-                        <p class="text-xs text-secondary mb-0">Organization</p>
+                        <p class="text-xs font-weight-bold mb-0">Test and obtain</p>
+                        <p class="text-xs text-secondary mb-0">your drivers license</p>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-success">Online</span>
+                        <span class="badge badge-sm bg-gradient-danger">Not Available</span>
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo("datetest") ?></span>
                       </td>
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                          Edit
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xl" data-toggle="tooltip" data-original-title="Edit user">
+                        <span class="badge badge-sm bg-gradient-success">Schedule Now</span>
                         </a>
                       </td>
                     </tr>
@@ -292,27 +268,27 @@
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div>
-                            <img src="../assets/img/team-3.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user2">
+                            <img src="../assets/img/registervehicle.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user2">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Alexa Liras</h6>
-                            <p class="text-xs text-secondary mb-0">alexa@creative-tim.com</p>
+                            <h6 class="mb-0 text-sm">Register Vehicle</h6>
+                            <p class="text-xs text-secondary mb-0">Required by Law.</p>
                           </div>
                         </div>
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">Programator</p>
-                        <p class="text-xs text-secondary mb-0">Developer</p>
+                        <p class="text-xs font-weight-bold mb-0">Register your vehicle with the DMV.</p>
+                        <p class="text-xs text-secondary mb-0">Required by law.</p>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                        <span class="badge badge-sm bg-gradient-success">Available</span>
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">11/01/19</span>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo("dateregister");?></span>
                       </td>
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                          Edit
+                      <a href="javascript:;" class="text-secondary font-weight-bold text-xl" data-toggle="tooltip" data-original-title="Edit user">
+                        <span class="badge badge-sm bg-gradient-success">Schedule Now</span>
                         </a>
                       </td>
                     </tr>
@@ -320,27 +296,27 @@
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div>
-                            <img src="../assets/img/team-4.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user3">
+                            <img src="../assets/img/ccp.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user3">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Laurent Perrier</h6>
-                            <p class="text-xs text-secondary mb-0">laurent@creative-tim.com</p>
+                            <h6 class="mb-0 text-sm">Concealed Carry Permit</h6>
+                            <p class="text-xs text-secondary mb-0">Legally Carry & Conceal Weapons.</p>
                           </div>
                         </div>
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">Executive</p>
-                        <p class="text-xs text-secondary mb-0">Projects</p>
+                        <p class="text-xs font-weight-bold mb-0">Test & Get a background check.</p>
+                        <p class="text-xs text-secondary mb-0">Afteward, you can get your CC Permit.</p>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-success">Online</span>
+                        <span class="badge badge-sm bg-gradient-success">Available</span>
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">19/09/17</span>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo("ccdate") ?></span>
                       </td>
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                          Edit
+                      <a href="javascript:;" class="text-secondary font-weight-bold text-xl" data-toggle="tooltip" data-original-title="Edit user">
+                        <span class="badge badge-sm bg-gradient-success">Schedule Now</span>
                         </a>
                       </td>
                     </tr>
@@ -348,27 +324,27 @@
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div>
-                            <img src="../assets/img/team-3.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user4">
+                            <img src="../assets/img/cdl.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user4">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Michael Levi</h6>
-                            <p class="text-xs text-secondary mb-0">michael@creative-tim.com</p>
+                            <h6 class="mb-0 text-sm">Commerical Drivers License Test</h6>
+                            <p class="text-xs text-secondary mb-0">Coming Soon</p>
                           </div>
                         </div>
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">Programator</p>
-                        <p class="text-xs text-secondary mb-0">Developer</p>
+                        <p class="text-xs font-weight-bold mb-0">Test and Obtain</p>
+                        <p class="text-xs text-secondary mb-0">your CDL.</p>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-success">Online</span>
+                        <span class="badge badge-sm bg-gradient-danger">Not Available</span>
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">24/12/08</span>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo("datecdl") ?></span>
                       </td>
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                          Edit
+                      <a href="javascript:;" class="text-secondary font-weight-bold text-xl" data-toggle="tooltip" data-original-title="Edit user">
+                        <span class="badge badge-sm bg-gradient-success">Schedule Now</span>
                         </a>
                       </td>
                     </tr>
@@ -376,27 +352,27 @@
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div>
-                            <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user5">
+                            <img src="../assets/img/registerfirearm.png" class="avatar avatar-sm me-3 border-radius-lg" alt="user5">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Richard Gran</h6>
-                            <p class="text-xs text-secondary mb-0">richard@creative-tim.com</p>
+                            <h6 class="mb-0 text-sm">Register Firearm</h6>
+                            <p class="text-xs text-secondary mb-0">Legally Required to Carry your firearm.</p>
                           </div>
                         </div>
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">Manager</p>
-                        <p class="text-xs text-secondary mb-0">Executive</p>
+                        <p class="text-xs font-weight-bold mb-0">Register your Firearm with the government.</p>
+                        <p class="text-xs text-secondary mb-0">Required by law.</p>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                        <span class="badge badge-sm bg-gradient-success">Available</span>
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">04/10/21</span>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo("registerdate"); ?></span>
                       </td>
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                          Edit
+                      <a href="javascript:;" class="text-secondary font-weight-bold text-xl" data-toggle="tooltip" data-original-title="Edit user">
+                        <span class="badge badge-sm bg-gradient-success">Schedule Now</span>
                         </a>
                       </td>
                     </tr>
@@ -404,27 +380,27 @@
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div>
-                            <img src="../assets/img/team-4.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user6">
+                            <img src="../assets/img/class2.png" class="avatar avatar-sm me-3 border-radius-lg" alt="user6">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">Miriam Eric</h6>
-                            <p class="text-xs text-secondary mb-0">miriam@creative-tim.com</p>
+                            <h6 class="mb-0 text-sm">Class 2 Weapons Permit</h6>
+                            <p class="text-xs text-secondary mb-0">Legally Carry Rifles.</p>
                           </div>
                         </div>
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">Programator</p>
-                        <p class="text-xs text-secondary mb-0">Developer</p>
+                        <p class="text-xs font-weight-bold mb-0">Test & Get a background check.</p>
+                        <p class="text-xs text-secondary mb-0">Afterward, you can get your Class 2 Permit.</p>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                        <span class="badge badge-sm bg-gradient-success">Available</span>
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">14/09/20</span>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo("class2date")?></span>
                       </td>
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                          Edit
+                      <a href="javascript:;" class="text-secondary font-weight-bold text-xl" data-toggle="tooltip" data-original-title="Edit user">
+                        <span class="badge badge-sm bg-gradient-success">Schedule Now</span>
                         </a>
                       </td>
                     </tr>
@@ -440,7 +416,7 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Projects table</h6>
+                <h6 class="text-white text-capitalize ps-3">Your Licenses & Registered Guns / Vehicles</h6>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
@@ -448,10 +424,10 @@
                 <table class="table align-items-center justify-content-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Project</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Budget</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Item</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Obtained</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Completion</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Expires</th>
                       <th></th>
                     </tr>
                   </thead>
@@ -460,10 +436,10 @@
                       <td>
                         <div class="d-flex px-2">
                           <div>
-                            <img src="../assets/img/small-logos/logo-asana.svg" class="avatar avatar-sm rounded-circle me-2" alt="spotify">
+                            <img src="../assets/img/driverslicense.png" class="avatar avatar-sm rounded-circle me-2" alt="spotify">
                           </div>
                           <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Asana</h6>
+                            <h6 class="mb-0 text-sm">Drivers License</h6>
                           </div>
                         </div>
                       </td>
@@ -496,7 +472,7 @@
                             <img src="../assets/img/small-logos/github.svg" class="avatar avatar-sm rounded-circle me-2" alt="invision">
                           </div>
                           <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Github</h6>
+                            <h6 class="mb-0 text-sm">Vehicle</h6>
                           </div>
                         </div>
                       </td>
@@ -526,10 +502,10 @@
                       <td>
                         <div class="d-flex px-2">
                           <div>
-                            <img src="../assets/img/small-logos/logo-atlassian.svg" class="avatar avatar-sm rounded-circle me-2" alt="jira">
+                            <img src="../assets/img/ccp.jpg" class="avatar avatar-sm rounded-circle me-2" alt="jira">
                           </div>
                           <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Atlassian</h6>
+                            <h6 class="mb-0 text-sm">Gun</h6>
                           </div>
                         </div>
                       </td>
@@ -559,10 +535,10 @@
                       <td>
                         <div class="d-flex px-2">
                           <div>
-                            <img src="../assets/img/small-logos/bootstrap.svg" class="avatar avatar-sm rounded-circle me-2" alt="webdev">
+                            <img src="../assets/img/cdl.jpg" class="avatar avatar-sm rounded-circle me-2" alt="webdev">
                           </div>
                           <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Bootstrap</h6>
+                            <h6 class="mb-0 text-sm">CDL</h6>
                           </div>
                         </div>
                       </td>
@@ -592,10 +568,10 @@
                       <td>
                         <div class="d-flex px-2">
                           <div>
-                            <img src="../assets/img/small-logos/logo-slack.svg" class="avatar avatar-sm rounded-circle me-2" alt="slack">
+                            <img src="../assets/img/ccp.jpg" class="avatar avatar-sm rounded-circle me-2" alt="slack">
                           </div>
                           <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Slack</h6>
+                            <h6 class="mb-0 text-sm">Conceal Carry</h6>
                           </div>
                         </div>
                       </td>
@@ -625,10 +601,10 @@
                       <td>
                         <div class="d-flex px-2">
                           <div>
-                            <img src="../assets/img/small-logos/devto.svg" class="avatar avatar-sm rounded-circle me-2" alt="xd">
+                            <img src="../assets/img/class2.png" class="avatar avatar-sm rounded-circle me-2" alt="xd">
                           </div>
                           <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Devto</h6>
+                            <h6 class="mb-0 text-sm">Class 2</h6>
                           </div>
                         </div>
                       </td>

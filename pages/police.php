@@ -135,6 +135,7 @@ if ($result->num_rows > 0) {
       
       $policeSalary[] = $data;
     }
+    $dataform = number_format($data);
 }
 ?>
 
@@ -423,10 +424,7 @@ if ($result->num_rows > 0) {
   </h6>
   <span class="text-xs">Depends on your Rank</span>
   <hr class="horizontal dark my-3">
-  <h5 class="mb-0">
-    <?php
-      echo $data;
-    ?>
+  <h5 class="mb-0">$<?php echo $dataform;?>
   </h5>
 </div>
                   </div>
