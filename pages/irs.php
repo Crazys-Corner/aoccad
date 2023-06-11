@@ -361,18 +361,18 @@ IRS - AOC LRP
                   <img src="../assets/img/illustrations/pattern-tree.svg" class="position-absolute opacity-2 start-0 top-0 w-100 z-index-1 h-100" alt="pattern-tree">
                   <span class="mask bg-gradient-dark opacity-10"></span>
                   <div class="card-body position-relative z-index-1 p-3">
-                    <h3 class="text-white">Rank</h3>
-                    <h5 class="text-white mt-4 mb-5 pb-2"><?php echo($officerRank);?></h5>
+                    <h3 class="text-white">Next Tax Day</h3>
+                    <h5 class="text-white mt-4 mb-5 pb-2"><?php echo("$taxday");?></h5>
                     <div class="d-flex">
                       <div class="d-flex">
                         <div class="me-4">
-                          <p class="text-white text-sm opacity-8 mb-0">Department</p>
-                          <h6 class="text-white mb-0"><?php echo($department) ?>
+                          <p class="text-white text-sm opacity-8 mb-0">Status</p>
+                          <h6 class="text-white mb-0"><?php echo("$filedornot") ?>
                           </h6>
                         </div>
                         <div>
-                          <p class="text-white text-sm opacity-8 mb-0">Started</p>
-                          <h6 class="text-white mb-0"><?php echo($joined); ?></h6>
+                          <p class="text-white text-sm opacity-8 mb-0">Last Tax Day</p>
+                          <h6 class="text-white mb-0"><?php echo($lasttaxday); ?></h6>
                         </div>
                       </div>
                     </div>
@@ -390,8 +390,8 @@ IRS - AOC LRP
                       </div>
                     </div>
                     <div class="card-body pt-0 p-3 text-center">
-                      <h6 class="text-center mb-0">Salary</h6>
-                      <span class="text-xs">Depends on your Rank</span>
+                      <h6 class="text-center mb-0">Total Income</h6>
+                      <span class="text-xs">All the money you have made in this tax period</span>
                       <hr class="horizontal dark my-3">
                       <h5 class="mb-0">$ 2000</h5>
                     </div>
@@ -406,7 +406,7 @@ IRS - AOC LRP
                     </div>
                     <div class="card-body pt-0 p-3 text-center">
                       <h6 class="text-center mb-0">Balance</h6>
-                      <span class="text-xs">Linked to the Server.</span>
+                      <span class="text-xs">Linked to the Server. Total amount of money you have</span>
                       <hr class="horizontal dark my-3">
                       <h5 class="mb-0">$<?php echo($accountbalance) ?></h5>
                     </div>
@@ -419,7 +419,7 @@ IRS - AOC LRP
                 <div class="card-header pb-0 p-3">
                   <div class="row">
                     <div class="col-6 d-flex align-items-center">
-                      <h6 class="mb-0">Look up player data using a 64ID or Username.</h6>
+                      <h6 class="mb-0">File your taxes here:</h6>
                     </div>
                    
                     <div class="col-6 text-end">
@@ -479,7 +479,7 @@ IRS - AOC LRP
   <div class="col-md-7 mt-4">
     <div class="card">
       <div class="card-header pb-0 px-3">
-        <h6 class="mb-0">Recent Fines</h6>
+        <h6 class="mb-0">Property Adjustment</h6>
       </div>
       <div class="card-body pt-4 p-3">
         <ul class="list-group">

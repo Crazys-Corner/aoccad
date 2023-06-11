@@ -14,6 +14,69 @@ $unformattedTotalBal = $row['total_sum'];
 $totalBal = number_format($unformattedTotalBal);
 ?>
 
+<?php $sql = "SELECT COUNT(*) AS count FROM allPlayers";
+$result = $conn->query($sql);
+
+// Check if the query was successful
+if ($result) {
+    $row = $result->fetch_assoc();
+    $rowCount = $row["count"];
+
+
+} else {
+    echo "Error executing the query: " . $conn->error;
+} ?>
+
+<?php 
+// total bank transfers
+$sql2 = 'SELECT SUM(Amount) AS transactions FROM BTBanking_Transactions;';
+$result = mysqli_query($conn, $sql2);
+$row = mysqli_fetch_assoc($result);
+$unformattedTotalTrans = $row['transactions'];
+$totalTrans = number_format($unformattedTotalTrans); ?>
+
+<?php 
+$query = "SELECT SUM(CardBalance) AS total_sum FROM BTBanking_Accounts WHERE PlayerID = $steam64;";
+$result = mysqli_query($conn, $query);
+
+if (!$result) {
+    // Query execution failed, handle the error
+    echo "Error executing the query: " . mysqli_error($conn);
+} else {
+    $row = mysqli_fetch_assoc($result);
+
+    if ($row) {
+        $unformattedBal = $row['total_sum'];
+        $totalpersbal = number_format($unformattedBal);
+
+    } else {
+        // No rows found
+        echo "No rows found.";
+    }
+}
+
+?>
+<?php
+// personal income
+
+$query = "SELECT SUM(Amount) AS amt FROM BTBanking_Transactions WHERE PlayerID = $steam64 AND BalanceBefore > BalanceAfter;"; 
+$result = mysqli_query($conn, $query);
+if (!$result) {
+  echo "error Executing the query: " . mysqli_error($conn); 
+}
+else {
+  $row = mysqli_fetch_assoc($result);
+    if ($row) {
+      $unforminco = $row["amt"];
+      $forminco = number_format($unforminco); 
+    }
+    else {
+      echo "No transactions.";
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -263,7 +326,7 @@ $totalBal = number_format($unformattedTotalBal);
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>than last week</p>
+              <p class="mb-0">All money on the server.</p>
             </div>
           </div>
         </div>
@@ -275,12 +338,12 @@ $totalBal = number_format($unformattedTotalBal);
               </div>
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize">Total Users</p>
-                <h4 class="mb-0">2,300</h4>
+                <h4 class="mb-0"><?php echo($rowCount); ?></h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>than last month</p>
+              <p class="mb-0">Total Players ever joined the server.</p>
             </div>
           </div>
         </div>
@@ -292,12 +355,12 @@ $totalBal = number_format($unformattedTotalBal);
               </div>
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize">Currently Online</p>
-                <h4 class="mb-0">3,462</h4>
+                <h4 class="mb-0">WORK IN PROGRESS.</h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span> than yesterday</p>
+              <p class="mb-0">Currently not functional</p>
             </div>
           </div>
         </div>
@@ -309,12 +372,12 @@ $totalBal = number_format($unformattedTotalBal);
               </div>
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize">Sales</p>
-                <h4 class="mb-0">$103,430</h4>
+                <h4 class="mb-0">$<?php echo($totalTrans); ?></h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than yesterday</p>
+              <p class="mb-0">Total Money moved around on the server.</p>
             </div>
           </div>
         </div>
@@ -322,60 +385,46 @@ $totalBal = number_format($unformattedTotalBal);
       <div class="row mt-4">
         <div class="col-lg-4 col-md-6 mt-4 mb-4">
           <div class="card z-index-2 ">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-              <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                <div class="chart">
-                  <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
-                </div>
-              </div>
-            </div>
+           
             <div class="card-body">
-              <h6 class="mb-0 ">Website Views</h6>
-              <p class="text-sm ">Last Campaign Performance</p>
+              <h6 class="mb-0 ">Banking</h6>
+              <p class="text-sm ">Your bank account balance</p>
+              <p class="text-xl text-center" style="font-size: larger;"><b>$<?php echo($totalpersbal); ?></b></p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm"> campaign sent 2 days ago </p>
+                <p class="mb-0 text-sm"> Updates on page refresh. </p>
               </div>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 mt-4 mb-4">
           <div class="card z-index-2  ">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-              <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
-                <div class="chart">
-                  <canvas id="chart-line" class="chart-canvas" height="170"></canvas>
-                </div>
-              </div>
-            </div>
+           
             <div class="card-body">
-              <h6 class="mb-0 "> Daily Sales </h6>
-              <p class="text-sm "> (<span class="font-weight-bolder">+15%</span>) increase in today sales. </p>
+              <h6 class="mb-0 "> Total Income</h6>
+              <p class="text-sm "> Total Money Made</p>
+          
+              <p class="text-xl text-center" style="font-size: larger;"><b>$<?php echo($forminco); ?></b></p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm"> updated 4 min ago </p>
+                <p class="mb-0 text-sm"> Updates on page refresh. </p>
               </div>
             </div>
           </div>
         </div>
         <div class="col-lg-4 mt-4 mb-3">
           <div class="card z-index-2 ">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-              <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
-                <div class="chart">
-                  <canvas id="chart-line-tasks" class="chart-canvas" height="170"></canvas>
-                </div>
-              </div>
-            </div>
+           
             <div class="card-body">
-              <h6 class="mb-0 ">Completed Tasks</h6>
-              <p class="text-sm ">Last Campaign Performance</p>
+              <h6 class="mb-0 ">Your Steam 64 ID</h6>
+              <p class="text-sm ">Publically Available. Useful for a lot of legal things.</p>
+              <p class="text-xl text-center" style="font-size: larger;"><b><?php echo($steam64); ?></b></p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm">just updated</p>
+                <p class="mb-0 text-sm">Updates on Page refresh, however that's not needed, it won't ever change.</p>
               </div>
             </div>
           </div>
@@ -643,7 +692,7 @@ $totalBal = number_format($unformattedTotalBal);
         <div class="col-lg-4 col-md-6">
           <div class="card h-100">
             <div class="card-header pb-0">
-              <h6>Orders overview</h6>
+              <h6>No clue what to put here yet. So here is fake filler data.</h6>
               <p class="text-sm">
                 <i class="fa fa-arrow-up text-success" aria-hidden="true"></i>
                 <span class="font-weight-bold">24%</span> this month

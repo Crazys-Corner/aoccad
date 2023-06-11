@@ -8,6 +8,32 @@ include('db_conn.php');
 // Required per page code
 ?>
 
+<?php 
+// Retrieve data from the "registeredlicenses" table for the user's ID
+$query = "SELECT * FROM registeredlicenses WHERE ID = '$steam64'";
+$result = mysqli_query($conn, $query);
+
+if (!$result) {
+    // Query execution failed, handle the error
+    echo "Error executing the query: " . mysqli_error($conn);
+} else {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $conceal = $row['concealcarry'];
+        $class2 = $row['class2'];
+        $drivers = $row['drivers'];
+        $cdl = $row['cdl'];
+
+        // Check if any value is NULL and print "unobtained"
+        $conceal = ($conceal !== null) ? $conceal : "unobtained";
+        $class2 = ($class2 !== null) ? $class2 : "unobtained";
+        $drivers = ($drivers !== null) ? $drivers : "unobtained";
+        $cdl = ($cdl !== null) ? $cdl : "unobtained";
+
+ 
+    }
+}
+?>
+
 <?php
 // Registered Items Init
 
@@ -461,19 +487,15 @@ include('db_conn.php');
                         </div>
                       </td>
                       <td>
-                        <p class="text-sm font-weight-bold mb-0">$2,500</p>
+                        <p class="text-sm font-weight-bold mb-0"><?php echo($drivers); ?></p>
                       </td>
                       <td>
-                        <span class="text-xs font-weight-bold">working</span>
+                        <span class="text-xs font-weight-bold"><?php echo($drivers); ?></span>
                       </td>
                       <td class="align-middle text-center">
                         <div class="d-flex align-items-center justify-content-center">
-                          <span class="me-2 text-xs font-weight-bold">60%</span>
-                          <div>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                            </div>
-                          </div>
+                          <span class="me-2 text-xs font-weight-bold">Never</span>
+                         
                         </div>
                       </td>
                       <td class="align-middle">
@@ -526,44 +548,56 @@ while ($row = mysqli_fetch_assoc($result)) {
         </tr>';
 }
 
+?>
+             <?php
+// Assuming you have already established a database connection and started the session
+
+// Retrieve data from the "registeredvehicles" table for the user's ID
+$query = "SELECT * FROM registeredguns WHERE ID = '$steam64'";
+$result = mysqli_query($conn, $query);
+
+// Loop through the results and generate HTML code
+while ($row = mysqli_fetch_assoc($result)) {
+    $gun = $row['gun'];
+    $dateRegistered = $row['dateregistered'];
+    $expirationDate = $row['expirationdate'];
+
+    echo '
+        <tr>
+          <td>
+            <div class="d-flex px-2">
+              <div>
+                <img src="../assets/img/gun.jpg" class="avatar avatar-sm rounded-circle me-2" alt="invision">
+              </div>
+              <div class="my-auto">
+                <h6 class="mb-0 text-sm">' . $gun . '</h6>
+              </div>
+            </div>
+          </td>
+          <td>
+            <p class="text-sm font-weight-bold mb-0">' . $dateRegistered . '</p>
+          </td>
+          <td>
+            <span class="text-xs font-weight-bold">registered</span>
+          </td>
+          <td class="align-middle text-center">
+            <div class="d-flex align-items-center justify-content-center">
+              <span class="me-2 text-xs font-weight-bold">' . $expirationDate . '</span>
+            </div>
+          </td>
+          <td class="align-middle">
+            <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-ellipsis-v text-xs"></i>
+            </button>
+          </td>
+        </tr>';
+}
+
 // Close the database connection
 mysqli_close($conn);
 ?>
 
-
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div>
-                            <img src="../assets/img/gun.jpg" class="avatar avatar-sm rounded-circle me-2" alt="jira">
-                          </div>
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Gun</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">$3,400</p>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">canceled</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <div class="d-flex align-items-center justify-content-center">
-                          <span class="me-2 text-xs font-weight-bold">30%</span>
-                          <div>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="30" style="width: 30%;"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="align-middle">
-                        <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                          <i class="fa fa-ellipsis-v text-xs"></i>
-                        </button>
-                      </td>
-                    </tr>
+                  
                     <tr>
                       <td>
                         <div class="d-flex px-2">
@@ -576,19 +610,15 @@ mysqli_close($conn);
                         </div>
                       </td>
                       <td>
-                        <p class="text-sm font-weight-bold mb-0">$14,000</p>
+                        <p class="text-sm font-weight-bold mb-0"><?php echo($cdl); ?></p>
                       </td>
                       <td>
-                        <span class="text-xs font-weight-bold">working</span>
+                        <span class="text-xs font-weight-bold"><?php echo($cdl); ?></span>
                       </td>
                       <td class="align-middle text-center">
                         <div class="d-flex align-items-center justify-content-center">
-                          <span class="me-2 text-xs font-weight-bold">80%</span>
-                          <div>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="80" style="width: 80%;"></div>
-                            </div>
-                          </div>
+                          <span class="me-2 text-xs font-weight-bold">Never</span>
+                         
                         </div>
                       </td>
                       <td class="align-middle">
@@ -609,19 +639,15 @@ mysqli_close($conn);
                         </div>
                       </td>
                       <td>
-                        <p class="text-sm font-weight-bold mb-0">$1,000</p>
+                        <p class="text-sm font-weight-bold mb-0"><?php echo($conceal); ?></p>
                       </td>
                       <td>
-                        <span class="text-xs font-weight-bold">canceled</span>
+                        <span class="text-xs font-weight-bold"><?php echo($conceal); ?></span>
                       </td>
                       <td class="align-middle text-center">
                         <div class="d-flex align-items-center justify-content-center">
-                          <span class="me-2 text-xs font-weight-bold">0%</span>
-                          <div>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;"></div>
-                            </div>
-                          </div>
+                          <span class="me-2 text-xs font-weight-bold">Never</span>
+                          
                         </div>
                       </td>
                       <td class="align-middle">
@@ -637,24 +663,21 @@ mysqli_close($conn);
                             <img src="../assets/img/class2.png" class="avatar avatar-sm rounded-circle me-2" alt="xd">
                           </div>
                           <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Class 2</h6>
+                            <h6 class="mb-0 text-sm">Class 2 License</h6>
                           </div>
                         </div>
                       </td>
                       <td>
-                        <p class="text-sm font-weight-bold mb-0">$2,300</p>
+                        <p class="text-sm font-weight-bold mb-0"><?php echo($class2); ?></p>
                       </td>
                       <td>
-                        <span class="text-xs font-weight-bold">done</span>
+                        <span class="text-xs font-weight-bold"><?php echo($class2); ?></span>
                       </td>
                       <td class="align-middle text-center">
                         <div class="d-flex align-items-center justify-content-center">
-                          <span class="me-2 text-xs font-weight-bold">100%</span>
+                          <span class="me-2 text-xs font-weight-bold">Never</span>
                           <div>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-                            </div>
-                          </div>
+                            
                         </div>
                       </td>
                       <td class="align-middle">
