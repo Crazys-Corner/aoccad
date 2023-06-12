@@ -419,7 +419,7 @@ IRS - AOC LRP
                 <div class="card-header pb-0 p-3">
                   <div class="row">
                     <div class="col-6 d-flex align-items-center">
-                      <h6 class="mb-0">File your taxes here:</h6>
+                      <h6 class="mb-0">Get Help & Support here:</h6>
                     </div>
                    
                     <div class="col-6 text-end">
@@ -430,20 +430,20 @@ IRS - AOC LRP
                 <div class="card-body p-3">
                   <div class="row">
                     <div class="col-md-6 mb-md-0 mb-4">
-                      <div class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
-                      <form action="playerlookup.php" method="POST">
-                          <input type="text" placeholder="Steam64ID or Username" name="steam64id" style="border: none;">
-              
-                      </div>
+         
+                     <button class="btn btn-primary"><a href="https://discord.gg/UvYFcg6fTM" target="_blank" class="link-light">Main Discord</a></button>
+                     <button class="btn btn-primary"><a href="https://discord.gg/x7PCVjUkU7" target="_blank" class="link-light">IRS Discord</a></button>
+
+                  
                     </div>
 
            
                   </div>
        
                 </div>
-                <input type="submit" class="btn bg-gradient-dark mb-0 center-text">
+               
               </div>
-              </form>
+    
             </div>
           </div>
 
@@ -454,23 +454,23 @@ IRS - AOC LRP
         <div class="card-header pb-0 p-3">
             <div class="row">
                 <div class="col-6 d-flex align-items-center">
-                    <h6 class="mb-0">Warrants</h6>
+                    <h6 class="mb-0">Tax Info</h6>
                 </div>
-                <div class="col-6 text-end">
-                    <button class="btn btn-outline-primary btn-sm mb-0">View All</button>
-                </div>
+                
             </div>
         </div>
         <div class="card-body p-3 pb-0">
             <ul class="list-group">
-                <?php foreach ($warrantData as $item) { ?>
+                
                 <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                     <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark font-weight-bold text-sm"><?php echo $item['person_name']; ?></h6>
-                        <span class="text-xs"><?php echo $item['warrant']; ?></span>
+                        <h6 class="mb-1 text-dark font-weight-bold text-sm">Your 64ID</h6>
+                        <span class="text-xs"><?php echo($steamid);?></span>
+                        <h6 class="mb-1 text-dark font-weight-bold text-sm">More to come later</h6>
+                        <span class="text-xs">More to come later.</span>
                     </div>
                 </li>
-                <?php } ?>
+                
             </ul>
         </div>
     </div>
@@ -488,45 +488,24 @@ IRS - AOC LRP
           $query = "SELECT * FROM BTPoliceUtilities_Fines ORDER BY Issued DESC LIMIT 10"; // Adjust the LIMIT as per your requirements
           $result = execute_query($query);
 
-          // Check if there are any fines
-          if (mysqli_num_rows($result) > 0) {
-              // Loop through the fines and display the data
-              while ($row = mysqli_fetch_assoc($result)) {
-                  $caseId = $row['CaseID'];
-                  $playerId = $row['PlayerID'];
-                  $officerId = $row['OfficerID'];
-                  $fineAmount = $row['FineAmount'];
-                  $reason = $row['Reason'];
-                  $paid = $row['Paid'];
-                  $issued = $row['Issued'];
+           
                   ?>
-
+  <form>
                   <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
                     <div class="d-flex flex-column">
-                      <h6 class="mb-3 text-sm">Fine Details</h6>
-                      <span class="mb-2 text-xs">Case ID: <span class="text-dark font-weight-bold ms-sm-2"><?php echo $caseId; ?></span></span>
-                      <span class="mb-2 text-xs">Player ID: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $playerId; ?></span></span>
-                      <span class="mb-2 text-xs">Officer ID: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $officerId; ?></span></span>
-                      <span class="mb-2 text-xs">Fine Amount: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $fineAmount; ?></span></span>
-                      <span class="mb-2 text-xs">Reason: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $reason; ?></span></span>
-                      <span class="mb-2 text-xs">Paid: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $paid; ?></span></span>
-                      <span class="text-xs">Issued: <span class="text-dark ms-sm-2 font-weight-bold"><?php echo $issued; ?></span></span>
+                      <h6 class="mb-3 text-sm"></h6>
+                      <span class="mb-2 text-xs">Name & 64id: <span class="text-dark font-weight-bold ms-sm-2"><input type="text" name="name"></span></span>
+                      <span class="mb-2 text-xs">Property: <span class="text-dark font-weight-bold ms-sm-2"><input type="text" name="Property"></span></span>
+                      <span class="mb-2 text-xs">Location: <span class="text-dark ms-sm-2 font-weight-bold"><input type="text" name ="Location"></span></span>
+                      <span class="mb-2 text-xs">Purchase Cost: <span class="text-dark ms-sm-2 font-weight-bold"><input type="text" name ="purchase cost"></span></span>
+                      <span class="mb-2 text-xs">Current Tax: <span class="text-dark ms-sm-2 font-weight-bold"><input type="text" name="current tax"></span></span>
+                      <span class="mb-2 text-xs">Reason: <span class="text-dark ms-sm-2 font-weight-bold"><input type="text" name="reason"></span></span>
+                      <input type="submit" class="btn btn-success">
                     </div>
                     <div class="ms-auto text-end">
-                      <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">delete</i>Delete</a>
-                      <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">edit</i>Edit</a>
                     </div>
                   </li>
-
-                  <?php
-              }
-          } else {
-              echo "<li class='list-group-item border-0'>No recent fines found.</li>";
-          }
-
-          // Close the database connection
-          mysqli_close($conn);
-          ?>
+                </form>
         </ul>
       </div>
     </div>
@@ -537,31 +516,41 @@ IRS - AOC LRP
         <div class="card-header pb-0 px-3">
             <div class="row">
                 <div class="col-md-6">
-                    <h6 class="mb-0">Arrest Logs</h6>
+                    <h6 class="mb-0">Help</h6>
                 </div>
-                <div class="col-md-6 d-flex justify-content-start justify-content-md-end align-items-center">
-                    <i class="material-icons me-2 text-lg">date_range</i>
-                    <small>Recent</small>
-                </div>
+
             </div>
         </div>
         <div class="card-body pt-4 p-3">
-            <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">Newest</h6>
+            <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">File Taxes</h6>
             <ul class="list-group">
-                <?php foreach ($arrestLogs as $log) { ?>
+             
                 <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                     <div class="d-flex align-items-center">
                         <button class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 p-3 btn-sm d-flex align-items-center justify-content-center"><i class="material-icons text-lg">expand_more</i></button>
                         <div class="d-flex flex-column">
-                            <h6 class="mb-1 text-dark text-sm"><?php echo $log['PlayerID']; ?></h6>
-                            <span class="text-xs"><?php echo $log['Issued']; ?></span>
+                            <h6 class="mb-1 text-dark text-sm"><a href="https://discord.gg/ZTrFjfBdt5" target="_blank">IRS Discord</h6>
+                            <span class="text-xs">Join for IRS Specific Help.</span>
                         </div>
                     </div>
                     <div class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold">
-                        <?php echo $log['Reason']; ?>
+                       <span>Or don't, your call</span> 
                     </div>
                 </li>
-                <?php } ?>
+                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                    <div class="d-flex align-items-center">
+                        <button class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 p-3 btn-sm d-flex align-items-center justify-content-center"><i class="material-icons text-lg">expand_more</i></button>
+                        <div class="d-flex flex-column">
+                            <h6 class="mb-1 text-dark text-sm"><a href="https://discord.gg/UvYFcg6fTM" target="_blank">Main Discord</h6>
+                            <span class="text-xs">Join for all help.</span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold">
+                      <span>Or don't your call</span>  
+                    </div>
+                </li>
+
+       
             </ul>
         </div>
     </div>
