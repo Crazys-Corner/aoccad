@@ -1,8 +1,64 @@
 <?php
 include('db_conn.php');
+session_start();
+$steam64 = $_SESSION['steam_64id'];
+?>
+<?php
+$lastTaxDay = "Never"; // Initialize the last tax day variable
+
+$taxDay = new DateTime("6/17/23"); // Set the initial "tax day"
+
+$currentDate = new DateTime(); // Get the current date
+
+if ($currentDate >= $taxDay) {
+    $lastTaxDay = $taxDay->format('m/d/Y'); // Save the last tax day
+
+    // Add two weeks to the "tax day"
+    $taxDay->add(new DateInterval('P2W'));
+
+    // Check if the "tax day" falls on July 1st
+    if ($taxDay->format('m/d') == '07/01') {
+        // Set the "tax day" to July 15th
+        $taxDay->setDate($taxDay->format('Y'), 7, 15);
+    }
+}
+
+$nextTaxDay = $taxDay->format('m/d/Y'); // Format the "tax day" as desired
+
+// Detect if Filed or Not.
+
+// Prepare the query to check the taxpaid table
+$query = "SELECT filed FROM taxpaid WHERE steam_64id = '$steam64'";
+
+// Execute the query
+$result = $conn->query($query);
+
+// Check if the query was successful
+if ($result) {
+  if ($result->num_rows > 0) {
+      // Fetch the result row
+      $row = $result->fetch_assoc();
+
+      // Get the value of the "filed" column
+      $filedValue = $row["filed"];
+
+      // Set $filedOrNot as a boolean based on the value
+      $filedOrNot = ($filedValue == 1);
+  } else {
+      // No rows found, set $filedOrNot as false
+      $filedOrNot = false;
+  }
+    // Free the result set
+    $result->free();
+} else {
+    // Query execution failed, set $filedOrNot as false
+    $filedOrNot = false;
+}
+
+
 ?>
 
-<?php 
+<?php  
 // Balances
  $steamid = "76561198396312330"; // Replace with Login Info 
 
@@ -362,17 +418,17 @@ IRS - AOC LRP
                   <span class="mask bg-gradient-dark opacity-10"></span>
                   <div class="card-body position-relative z-index-1 p-3">
                     <h3 class="text-white">Next Tax Day</h3>
-                    <h5 class="text-white mt-4 mb-5 pb-2"><?php echo("$taxday");?></h5>
+                    <h5 class="text-white mt-4 mb-5 pb-2"><?php echo($nextTaxDay);?></h5>
                     <div class="d-flex">
-                      <div class="d-flex">
+                      <div class="d-flex justify-content-around">
                         <div class="me-4">
                           <p class="text-white text-sm opacity-8 mb-0">Status</p>
-                          <h6 class="text-white mb-0"><?php echo("$filedornot") ?>
+                          <h6 class="text-white mb-0">Taxes Filed: <?php echo $filedOrNot ? 'Yes' : 'No'; ?>
                           </h6>
                         </div>
                         <div>
                           <p class="text-white text-sm opacity-8 mb-0">Last Tax Day</p>
-                          <h6 class="text-white mb-0"><?php echo($lasttaxday); ?></h6>
+                          <h6 class="text-white mb-0"><?php echo($lastTaxDay); ?></h6>
                         </div>
                       </div>
                     </div>
@@ -431,8 +487,8 @@ IRS - AOC LRP
                   <div class="row">
                     <div class="col-md-6 mb-md-0 mb-4">
          
-                     <button class="btn btn-primary"><a href="https://discord.gg/UvYFcg6fTM" target="_blank" class="link-light">Main Discord</a></button>
-                     <button class="btn btn-primary"><a href="https://discord.gg/x7PCVjUkU7" target="_blank" class="link-light">IRS Discord</a></button>
+                 <a href="https://discord.gg/UvYFcg6fTM" target="_blank" class="link-light">    <button class="btn btn-primary">Main Discord</button></a>
+                   <a href="https://discord.gg/ZTrFjfBdt5" target="_blank" class="link-light">  <button class="btn btn-primary">IRS Discord</button></a>
 
                   
                     </div>
@@ -483,24 +539,10 @@ IRS - AOC LRP
       </div>
       <div class="card-body pt-4 p-3">
         <ul class="list-group">
-          <?php
-          // Fetch recent fines from the table
-          $query = "SELECT * FROM BTPoliceUtilities_Fines ORDER BY Issued DESC LIMIT 10"; // Adjust the LIMIT as per your requirements
-          $result = execute_query($query);
-
-           
-                  ?>
-  <form>
                   <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
                     <div class="d-flex flex-column">
-                      <h6 class="mb-3 text-sm"></h6>
-                      <span class="mb-2 text-xs">Name & 64id: <span class="text-dark font-weight-bold ms-sm-2"><input type="text" name="name"></span></span>
-                      <span class="mb-2 text-xs">Property: <span class="text-dark font-weight-bold ms-sm-2"><input type="text" name="Property"></span></span>
-                      <span class="mb-2 text-xs">Location: <span class="text-dark ms-sm-2 font-weight-bold"><input type="text" name ="Location"></span></span>
-                      <span class="mb-2 text-xs">Purchase Cost: <span class="text-dark ms-sm-2 font-weight-bold"><input type="text" name ="purchase cost"></span></span>
-                      <span class="mb-2 text-xs">Current Tax: <span class="text-dark ms-sm-2 font-weight-bold"><input type="text" name="current tax"></span></span>
-                      <span class="mb-2 text-xs">Reason: <span class="text-dark ms-sm-2 font-weight-bold"><input type="text" name="reason"></span></span>
-                      <input type="submit" class="btn btn-success">
+                      <h6 class="mb-3 text-sm">Property Adjustments are done on an external page.</h6>
+                      <a href="propertyadjust.rp.ageofcivilization.xyz" target="_blank"><button class="btn btn-success">Take me there!</button></a>
                     </div>
                     <div class="ms-auto text-end">
                     </div>
@@ -516,42 +558,14 @@ IRS - AOC LRP
         <div class="card-header pb-0 px-3">
             <div class="row">
                 <div class="col-md-6">
-                    <h6 class="mb-0">Help</h6>
+                    <h6 class="mb-0">File Taxes</h6>
                 </div>
 
             </div>
         </div>
         <div class="card-body pt-4 p-3">
-            <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">File Taxes</h6>
-            <ul class="list-group">
-             
-                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                    <div class="d-flex align-items-center">
-                        <button class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 p-3 btn-sm d-flex align-items-center justify-content-center"><i class="material-icons text-lg">expand_more</i></button>
-                        <div class="d-flex flex-column">
-                            <h6 class="mb-1 text-dark text-sm"><a href="https://discord.gg/ZTrFjfBdt5" target="_blank">IRS Discord</h6>
-                            <span class="text-xs">Join for IRS Specific Help.</span>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold">
-                       <span>Or don't, your call</span> 
-                    </div>
-                </li>
-                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                    <div class="d-flex align-items-center">
-                        <button class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 p-3 btn-sm d-flex align-items-center justify-content-center"><i class="material-icons text-lg">expand_more</i></button>
-                        <div class="d-flex flex-column">
-                            <h6 class="mb-1 text-dark text-sm"><a href="https://discord.gg/UvYFcg6fTM" target="_blank">Main Discord</h6>
-                            <span class="text-xs">Join for all help.</span>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold">
-                      <span>Or don't your call</span>  
-                    </div>
-                </li>
-
-       
-            </ul>
+            <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">Taxes are Filed externally.</h6>
+            <a href="taxes.rp.ageofcivilization.xyz" target="_blank"><button class="btn btn-success">Take me there!</button></a>
         </div>
     </div>
 </div>

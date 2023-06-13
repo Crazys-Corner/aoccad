@@ -175,10 +175,19 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="card mt-4">
             <div class="card-header p-3">
-              <h5 class="mb-0 text-danger text-center">Alert</h5>
+              <h5 class="mb-0 text-danger text-center">Insurance Calculator</h5>
             </div>
-       <p class="text-danger text-center">You do not have access to this page.</p><br>
-       <p class="text-center">Please click a link on the left to go somewhere else.</p>
+            <form action="insurancecalculator.php" method="POST" class="text-center">
+              <label>Number of Hours in Unturned</label><br>
+              <input name="hours" type="number" placeholder="2000" required><br>
+              <label>Fines</label><br>
+              <input name="fines" type="number" placeholder="2"><br>
+              <label>Price of Car owned</label><br>
+              <input name="carPrice" type="number" placeholder="$2000" required><br>
+              <label>Number of Issurance claims issued.</label><br>
+              <input name="noClaims" type="number" placeholder="5"><br><br>
+              <input class="btn btn-primary" type="Submit">
+</form>
             </div>
           </div>
          
