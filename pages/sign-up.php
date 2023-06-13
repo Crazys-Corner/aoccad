@@ -96,7 +96,7 @@ AOC RP Cad
                   <form role="form">
                 
                   <a 
-href="https://steamcommunity.com/openid/login?openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.mode=checkid_setup&openid.ns=http://specs.openid.net/auth/2.0&openid.realm=http://localhost&openid.return_to=http://localhost/aoccad/pages/steamresponse.php"
+href="https://steamcommunity.com/openid/login?openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.mode=checkid_setup&openid.ns=http://specs.openid.net/auth/2.0&openid.realm=https://ageofcivilization.xyz&openid.return_to=https://ageofcivilization.xyz/aoccad/pages/steamresponse.php"
 target="_blank"
 rel="noreferrer noopener"
 class="link-light"
