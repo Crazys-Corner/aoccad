@@ -690,7 +690,16 @@ function darkMode(el) {
 
   const svg = document.querySelectorAll('g');
 
-  if (!el.getAttribute("checked")) {
+  // Check if dark mode is enabled in local storage
+  const isDarkModeEnabled = localStorage.getItem('darkModeEnabled');
+
+  if (isDarkModeEnabled === 'true') {
+    enableDarkMode();
+  } else {
+    disableDarkMode();
+  }
+
+  function enableDarkMode() {
     body.classList.add('dark-version');
     for (var i = 0; i < hr.length; i++) {
       if (hr[i].classList.contains('dark')) {
@@ -754,8 +763,12 @@ function darkMode(el) {
     for (var i = 0; i < card_border.length; i++) {
       card_border[i].classList.add('border-dark');
     }
-    el.setAttribute("checked", "true");
-  } else {
+
+    // Update local storage
+    localStorage.setItem('darkModeEnabled', 'true');
+  }
+
+  function disableDarkMode() {
     body.classList.remove('dark-version');
     for (var i = 0; i < hr.length; i++) {
       if (hr[i].classList.contains('light')) {
@@ -820,9 +833,29 @@ function darkMode(el) {
     for (var i = 0; i < card_border_dark.length; i++) {
       card_border_dark[i].classList.remove('border-dark');
     }
-    el.removeAttribute("checked");
+
+    // Update local storage
+    localStorage.setItem('darkModeEnabled', 'false');
   }
-};
+
+  // Toggle dark mode based on checkbox state
+  el.addEventListener('change', function () {
+    if (el.checked) {
+      enableDarkMode();
+    } else {
+      disableDarkMode();
+    }
+  });
+}
+document.addEventListener('DOMContentLoaded', function() {
+  const darkModeCheckbox = document.getElementById('dark-version');
+  darkModeCheckbox.addEventListener('click', function() {
+    darkMode(this);
+  });
+});
+
+// Initialize dark mode
+darkMode(darkModeCheckbox);
 
 
 // side bullets

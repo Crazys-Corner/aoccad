@@ -199,14 +199,14 @@ IRS - AOC LRP
   <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.1.0" rel="stylesheet" />
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
-  <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+  <script defer data-site="ageofcivilization.xyz" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href="dashboard.html">
+      <a class="navbar-brand m-0" href="dashboard.php">
         <img src="../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold text-white">AOC Life Roleplay</span>
       </a>
@@ -239,7 +239,7 @@ IRS - AOC LRP
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/irs.php">
+          <a class="nav-link text-white  active bg-gradient-primary" href="../pages/irs.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">view_in_ar</i>
             </div>
@@ -247,7 +247,7 @@ IRS - AOC LRP
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white  active bg-gradient-primary" href="../pages/banking.php">
+          <a class="nav-link text-white " href="../pages/banking.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
             </div>
@@ -255,24 +255,17 @@ IRS - AOC LRP
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/notifications.php">
+          <a class="nav-link text-white " href="../pages/calculator.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">notifications</i>
             </div>
-            <span class="nav-link-text ms-1">Notifications</span>
+            <span class="nav-link-text ms-1">Insurance Calculator</span>
           </a>
         </li>
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/profile.php">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">person</i>
-            </div>
-            <span class="nav-link-text ms-1">Profile</span>
-          </a>
-        </li>
+
         <li class="nav-item">
           <a class="nav-link text-white " href="../pages/sign-in.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -398,7 +391,7 @@ IRS - AOC LRP
               </ul>
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a href="../pages/sign-in.html" class="nav-link text-body font-weight-bold px-0">
+              <a href="../pages/sign-in.php" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
                 <span class="d-sm-inline d-none">Sign In</span>
               </a>
@@ -543,7 +536,7 @@ IRS - AOC LRP
                   <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
                     <div class="d-flex flex-column">
                       <h6 class="mb-3 text-sm">Property Adjustments are done on an external page.</h6>
-                      <a href="propertyadjust.rp.ageofcivilization.xyz" target="_blank"><button class="btn btn-success">Take me there!</button></a>
+                      <a href="https://propertyadjust.rp.ageofcivilization.xyz" target="_blank"><button class="btn btn-success">Take me there!</button></a>
                     </div>
                     <div class="ms-auto text-end">
                     </div>
@@ -566,7 +559,7 @@ IRS - AOC LRP
         </div>
         <div class="card-body pt-4 p-3">
             <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">Taxes are Filed externally.</h6>
-            <a href="taxes.rp.ageofcivilization.xyz" target="_blank"><button class="btn btn-success">Take me there!</button></a>
+            <a href="https://taxes.rp.ageofcivilization.xyz" target="_blank"><button class="btn btn-success">Take me there!</button></a>
         </div>
     </div>
 </div>
@@ -602,8 +595,8 @@ IRS - AOC LRP
     <div class="card shadow-lg">
       <div class="card-header pb-0 pt-3">
         <div class="float-start">
-          <h5 class="mt-3 mb-0">Material UI Configurator</h5>
-          <p>See our dashboard options.</p>
+          <h5 class="mt-3 mb-0">UI Configurator</h5>
+          <p>Sadly does not save yet.</p>
         </div>
         <div class="float-end mt-4">
           <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
@@ -654,18 +647,7 @@ IRS - AOC LRP
           </div>
         </div>
         <hr class="horizontal dark my-sm-4">
-        <a class="btn bg-gradient-info w-100" href="https://www.creative-tim.com/product/material-dashboard-pro">Free Download</a>
-        <a class="btn btn-outline-dark w-100" href="https://www.creative-tim.com/learning-lab/bootstrap/overview/material-dashboard">View documentation</a>
-        <div class="w-100 text-center">
-          <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star creativetimofficial/material-dashboard on GitHub">Star</a>
-          <h6 class="mt-3">Thank you for sharing!</h6>
-          <a href="https://twitter.com/intent/tweet?text=Check%20Material%20UI%20Dashboard%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%23bootstrap5&amp;url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fsoft-ui-dashboard" class="btn btn-dark mb-0 me-2" target="_blank">
-            <i class="fab fa-twitter me-1" aria-hidden="true"></i> Tweet
-          </a>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-dashboard" class="btn btn-dark mb-0 me-2" target="_blank">
-            <i class="fab fa-facebook-square me-1" aria-hidden="true"></i> Share
-          </a>
-        </div>
+      
       </div>
     </div>
   </div>
