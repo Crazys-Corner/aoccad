@@ -93,7 +93,7 @@ AOC RP Cad
               <div class="card-body">
                 <form role="form" class="text-start">
                 <a 
-href="https://steamcommunity.com/openid/login?openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.mode=checkid_setup&openid.ns=http://specs.openid.net/auth/2.0&openid.realm=https://ageofcivilization.xyz&openid.return_to=https://ageofcivilization.xyz/aoccad/pages/steamresponsesignin.php"
+href="https://steamcommunity.com/openid/login?openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.mode=checkid_setup&openid.ns=http://specs.openid.net/auth/2.0&openid.realm=https://cad.ageofcivilization.xyz&openid.return_to=https://cad.ageofcivilization.xyz/aoccad/pages/steamresponsesignin.php"
 target="_blank"
 rel="noreferrer noopener"
 class="link-light"
