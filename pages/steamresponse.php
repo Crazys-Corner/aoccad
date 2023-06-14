@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 require("db_conn.php");
 
 // Assuming the callback URL is something like: https://yourwebsite.com/auth/steam/callback
@@ -26,7 +26,7 @@ if (isset($steam64ID)) {
 
         if ($insertResult) {
             // Successfully inserted, redirect to the sign-in page
-            header("Location: signin.php");
+            header("Location: sign-in.php");
             exit;
         } else {
             echo "Failed Signing In, please retry.";

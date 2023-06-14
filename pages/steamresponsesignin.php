@@ -1,4 +1,5 @@
 <?php 
+ob_start();
 require("db_conn.php");
 session_start();
 
@@ -19,7 +20,7 @@ if (isset($steamResponse['openid_claimed_id'])) {
         
         // Check if a row was returned
         if (mysqli_num_rows($result) > 0) {
-            echo "Account exists";
+ 
             header("Location: dashboard.php");
             exit;
         } else {
@@ -33,5 +34,5 @@ if (isset($steamResponse['openid_claimed_id'])) {
     echo "openid_claimed_id not present...";
     var_dump($_GET);
 }
-
+ob_end();
 ?>

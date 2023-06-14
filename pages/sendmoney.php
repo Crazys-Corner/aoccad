@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 $steam64 = $_SESSION['steam_64id'];
 include('db_conn.php');
