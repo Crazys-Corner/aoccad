@@ -93,7 +93,7 @@ AOC RP Cad
               <div class="card-body">
                 <form role="form" class="text-start">
                 <a 
-href="https://steamcommunity.com/openid/login?openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.mode=checkid_setup&openid.ns=http://specs.openid.net/auth/2.0&openid.realm=http://localhost&openid.return_to=http://localhost/aoccad/pages/steamresponsesignin.php"
+href="https://steamcommunity.com/openid/login?openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.mode=checkid_setup&openid.ns=http://specs.openid.net/auth/2.0&openid.realm=https://cad.ageofcivilization.xyz&openid.return_to=https://cad.ageofcivilization.xyz/aoccad/pages/steamresponsesignin.php"
 target="_blank"
 rel="noreferrer noopener"
 class="link-light"
@@ -147,7 +147,7 @@ class="link-light"
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/material-dashboard.js?v=3.1.0"></script>
+    <script src="../assets/js/material-dashboard.js?v=3.1.0"></script>
 </body>
 
 </html>
