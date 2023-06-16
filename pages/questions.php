@@ -1,3 +1,12 @@
+<?php 
+// Required per page code
+session_start();
+$steam64 = $_SESSION['steam_64id'];
+include('db_conn.php');
+// Required per page code
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -162,19 +171,185 @@ AOC RP Cad
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="card mt-4">
             <div class="card-header p-3">
-              <h5 class="mb-0 text-danger text-center">Insurance Calculator</h5>
+              <h5 class="mb-0 text-danger text-center">AOC DMV</h5>
             </div>
-            <form action="insurancecalculator.php" method="POST" class="text-center">
-              <label>Number of Hours in Unturned</label><br>
-              <input name="hours" type="number" placeholder="2000" required><br>
-              <label>Fines</label><br>
-              <input name="fines" type="number" placeholder="2"><br>
-              <label>Price of Car owned</label><br>
-              <input name="carPrice" type="number" placeholder="$2000" required><br>
-              <label>Number of Issurance claims issued.</label><br>
-              <input name="noClaims" type="number" placeholder="5"><br><br>
-              <input class="btn btn-primary" type="Submit">
+            <form action="driverstest.php" method="POST">
+
+<h1 class="text-center">Driving Test</h1>
+
+<p>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">
+        <strong>What does a red traffic sign mean?</strong>
+      </h5>
+      <ul class="list-unstyled">
+        <li>
+          <input type="radio" name="question[1]" value="a"> Stop
+        </li>
+        <li>
+          <input type="radio" name="question[1]" value="b"> Yield
+        </li>
+        <li>
+          <input type="radio" name="question[1]" value="c"> Caution
+        </li>
+        <li>
+          <input type="radio" name="question[1]" value="d"> Speed Limit
+        </li>
+      </ul>
+    </div>
+  </div>
+</p>
+
+<p>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">
+        <strong>What does a solid white line between lanes of traffic indicate?</strong>
+      </h5>
+      <ul class="list-unstyled">
+        <li>
+          <input type="radio" name="question[2]" value="a"> Drivers may change lanes if safe to do so
+        </li>
+        <li>
+          <input type="radio" name="question[2]" value="b"> Drivers should maintain their current lane and not change lanes
+        </li>
+        <li>
+          <input type="radio" name="question[2]" value="c"> Drivers must yield to oncoming traffic
+        </li>
+        <li>
+          <input type="radio" name="question[2]" value="d"> Drivers may proceed with caution
+        </li>
+      </ul>
+    </div>
+  </div>
+</p>
+
+<p>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">
+        <strong>When should you use your vehicle's headlights?</strong>
+      </h5>
+      <ul class="list-unstyled">
+        <li>
+          <input type="radio" name="question[3]" value="a"> Only during nighttime
+        </li>
+        <li>
+          <input type="radio" name="question[3]" value="b"> During adverse weather conditions or poor visibility
+        </li>
+        <li>
+          <input type="radio" name="question[3]" value="c"> Anytime you are driving
+        </li>
+        <li>
+          <input type="radio" name="question[3]" value="d"> Never
+        </li>
+      </ul>
+    </div>
+  </div>
+</p>
+
+<p>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">
+        <strong>What is the appropriate action to take when encountering a bicyclist on the road?</strong>
+      </h5>
+      <ul class="list-unstyled">
+        <li>
+          <input type="radio" name="question[4]" value="a"> Speed up to pass the bicyclist quickly
+        </li>
+        <li>
+          <input type="radio" name="question[4]" value="b"> Drive as close as possible to the bicyclist
+        </li>
+        <li>
+          <input type="radio" name="question[4]" value="c"> Give the bicyclist plenty of room when passing and maintain a safe distance
+        </li>
+        <li>
+          <input type="radio" name="question[4]" value="d"> Ignore the bicyclist and continue driving normally
+        </li>
+      </ul>
+    </div>
+  </div>
+</p>
+
+
+<p>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">
+        <strong>When pedestrians are crossing at a marked crosswalk, you should:</strong>
+      </h5>
+      <ul class="list-unstyled">
+        <li>
+          <input type="radio" name="question[5]" value="a"> Slow down and proceed with caution.
+        </li>
+        <li>
+          <input type="radio" name="question[5]" value="b"> Stop and wait until all pedestrians have safely crossed.
+        </li>
+        <li>
+          <input type="radio" name="question[5]" value="c"> Speed up to clear the crosswalk quickly.
+        </li>
+        <li>
+          <input type="radio" name="question[5]" value="d"> Swerve around the pedestrians to continue driving.
+        </li>
+      </ul>
+    </div>
+  </div>
+</p>
+
+<p>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">
+        <strong>When making a left turn at an intersection, you should:</strong>
+      </h5>
+      <ul class="list-unstyled">
+        <li>
+          <input type="radio" name="question[6]" value="a"> Turn into the rightmost lane.
+        </li>
+        <li>
+          <input type="radio" name="question[6]" value="b"> Turn into the leftmost lane.
+        </li>
+        <li>
+          <input type="radio" name="question[6]" value="c"> Choose any available lane.
+        </li>
+        <li>
+          <input type="radio" name="question[6]" value="d"> Turn into the lane closest to your current lane.
+        </li>
+      </ul>
+    </div>
+  </div>
+</p>
+
+<p>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">
+        <strong>When driving in a school zone, you should:</strong>
+      </h5>
+      <ul class="list-unstyled">
+        <li>
+          <input type="radio" name="question[7]" value="a"> Obey the posted speed limit, which is typically 20 mph.
+        </li>
+        <li>
+          <input type="radio" name="question[7]" value="b"> Be prepared to stop for children who are crossing the street.
+        </li>
+        <li>
+          <input type="radio" name="question[7]" value="c"> Be aware of children who may be playing in the area.
+        </li>
+        <li>
+          <input type="radio" name="question[7]" value="d"> All of the above.
+        </li>
+      </ul>
+    </div>
+  </div>
+</p>
+
+
+  <input class="btn btn-primary" type="Submit">
 </form>
+
             </div>
           </div>
          
@@ -201,7 +376,7 @@ AOC RP Cad
     <div class="card shadow-lg">
       <div class="card-header pb-0 pt-3">
         <div class="float-start">
-          <h5 class="mt-3 mb-0">UI Configurator</h5>
+          <h5 class="mt-3 mb-0">Material UI Configurator</h5>
           <p>See our dashboard options.</p>
         </div>
         <div class="float-end mt-4">
